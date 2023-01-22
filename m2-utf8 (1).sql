@@ -64,6 +64,9 @@ FROM customer
 --Выведите одним запросом только активных покупателей, имена которых KELLY или WILLIE.
 --Все буквы в фамилии и имени из верхнего регистра должны быть переведены в нижний регистр.
 
+--В 6 задании нужно добавить условие, которое отфильтрует неактивных пользователей.
+-- --Так как оператор AND имеет приоритет перед оператором OR, то логику нужно разделять скобками.
+
 SELECT customer_id,
        store_id,
        LOWER(first_name) as first_name,
@@ -75,8 +78,9 @@ SELECT customer_id,
        last_update,
        active
 FROM customer
-WHERE first_name LIKE 'KELLY'
-   OR first_name LIKE 'WILLIE'
+WHERE (first_name LIKE 'KELLY'
+    OR first_name LIKE 'WILLIE')
+  AND active = 1
 ;
 --======== ДОПОЛНИТЕЛЬНАЯ ЧАСТЬ ==============
 
